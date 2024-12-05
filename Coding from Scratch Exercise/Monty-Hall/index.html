@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Monty Hall Problem</title>
+  </head>
+  <body>
+    <h1>The Monty Hall Problem</h1>
+    <script>
+      var count = 10000;
+      var stay = 0;
+      var switchCounter = 0;
+
+      for (let i = 0; i < count; i++) {
+        var car = Math.ceil(Math.random() * 3);
+        // Output which door the car is behind
+        document.write("<p>The car is in door number " + car + "</p>");
+
+        var choice = Math.ceil(Math.random() * 3);
+        document.write(
+          "<p>The contestant choses door number " + choice + "</p>"
+        );
+
+        var remove;
+        do {
+          remove = Math.ceil(Math.random() * 3);
+        } while (remove === choice || remove === car);
+        document.write("<p>The removed door is number " + remove + "</p>");
+
+        //what was the right choice
+        if (car == choice) {
+          stay++;
+          document.write(
+            "<p style='color:red;'>The contestant should switch </p>"
+          );
+        } else {
+          switchCounter++;
+          document.write(
+            "<p style='color:green;'>The contestant should stay </p>"
+          );
+        }
+      }
+
+      document.write(
+        "<h2 style = 'color:red;'>Switch was correct " +
+          switchCounter +
+          " times <h2>"
+      );
+      document.write(
+        "<h2 style = 'color:green;'>Stay was correct " + stay + " times <h2>"
+      );
+
+      var Staypercent = ((stay / count) * 100).toFixed(2);
+      document.write(
+        "<h1>Stay was correct " + Staypercent + "% of the times</h1>"
+      );
+
+      var Switchpercent = ((switchCounter / count) * 100).toFixed(2);
+      document.write(
+        "<h1>Switch was correct " + Switchpercent + "% of the time</p>"
+      );
+    </script>
+  </body>
+</html>
